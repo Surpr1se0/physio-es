@@ -27,8 +27,14 @@ insert into ebdjango_user(name, username, email, password) values ('RUISANTOS', 
 
 
 
-correr o servidor:
+## Run the django server:
+```
 python manage.py runserver
+```
 
-correr o frontend:
+## Run the react server: 
+```
+npm install  
+npm run build
 npm start
+```
