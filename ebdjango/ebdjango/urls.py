@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.db import router
+from django.urls import include, path
+from ebdjango.views import api_login
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("login/", api_login, name='api_login')
 ]
