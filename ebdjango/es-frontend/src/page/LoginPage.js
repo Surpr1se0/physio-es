@@ -79,7 +79,7 @@ function Login(){
 
     return (
         user ?
-        <Navigate to="/listing" />
+        <Navigate to="/home" />
         :
         <div className="login">
             

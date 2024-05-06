@@ -19,8 +19,9 @@ from django.urls import path
 from django.db import router
 from django.urls import include, path
 from ebdjango.views import api_login
-
+from ebdjango.views import schedule
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("login/", api_login, name='api_login')
+    path("login/", api_login, name='api_login'),
+    path("home/",schedule, name="schedule")
 ]

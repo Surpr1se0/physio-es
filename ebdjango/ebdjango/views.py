@@ -5,9 +5,10 @@ from rest_framework.response import Response
 import jwt
 import datetime
 from django.contrib import auth
-
+import boto3
 from django.conf import settings
 from .models import User
+import os
 
 def generate_token(id,password):
     return jwt.encode({
@@ -39,4 +40,25 @@ def api_login(request):
     except User.DoesNotExist:
         return Response({'token': "login_error"})
 
+@api_view(['POST'])
+def schedule(request):
+    
+    
+    region_name = 'us-east-1'
+    sfn_client = boto3.client('stepfunctions', region_name=region_name)
+    
+   
+    input_data = {
+    'inputString': '1'
+    }
+    input_value = input_data['inputString']
+    # COLOQUEM AQUI A VOSSA STEP FUNCTION
+    state_machine_arn = 'arn:aws:states:us-east-1:364720497785:stateMachine:MyStateMachine-34p5g5xei'
 
+    response = sfn_client.start_execution(
+    stateMachineArn=state_machine_arn,
+    input=input_value  
+)
+   
+
+    return Response(response)
