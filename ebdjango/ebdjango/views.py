@@ -135,6 +135,7 @@ def test(request):
         # Get the reserved appointments for the selected doctor and selected specialty
         response = client.query(
             TableName='appointments1',
+            IndexName='doctor_name-index',
             KeyConditionExpression='doctor_name = :doctor_name',
             FilterExpression='speciality = :speciality',
             ExpressionAttributeValues={
@@ -155,6 +156,7 @@ def test(request):
             print(dn)
             response = client.query(
                 TableName='appointments1',
+                IndexName='doctor_name-index',
                 KeyConditionExpression='doctor_name = :doctor_name',
                 FilterExpression='speciality = :speciality',
                 ExpressionAttributeValues={
@@ -194,9 +196,18 @@ def save(request):
     
     table = db.Table('appointments1')
 
+
+    response_count = client.scan(
+    TableName='appointments1',
+    Select='COUNT'  # Get count of items
+)
+    next_id = response_count['Count'] + 1
+
+
     response = table.put_item(
         Item={
-            'doctor_name': doctor_name,
+            'appointment_id': next_id,
+            'doctor_name': str(doctor_name),
             'speciality': str(speciality),
             'day': str(day_selected),
             'hour': str(time_selected),
@@ -216,7 +227,6 @@ def show(request):
    
     db = boto3.resource('dynamodb',region_name='us-east-1')
     
-    table = db.Table('appointments1')
     User_id = request.GET.get('user')
     print(User_id)
     response = client.query(
@@ -229,6 +239,7 @@ def show(request):
     )
     print(response['Items'])
     return Response(response['Items'])
+
 
 @api_view(['GET'])
 def listadmin(request):
