@@ -42,15 +42,12 @@ const Home = () => {
     };
   
     const handleClick2 = async () => {
-        try {
-          const response = await axios.post('http://localhost:8000/home/', {
-            data: 'Data sending to StepFunction:'
-          });
-          console.log('Data sent to Django:', response.data);
-        } catch (error) {
-          console.error('Error sending data to Django:', error);
-        }
+        window.location.href = '/appointment';
       };
+
+    const handleClick3 = async () => {
+      window.location.href = '/my-appointments';
+    };
   
     return (
       <div className="container">
@@ -58,6 +55,7 @@ const Home = () => {
         <div className="button-container">
           <button className="button" onClick={handleClick1}>Logout</button>
           <button className="button" onClick={handleClick2}>Marcação</button>
+          <button className="button" onClick={handleClick3}>Consultas Marcadas</button>
         </div>
       </div>
     );

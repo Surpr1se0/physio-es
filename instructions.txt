@@ -15,3 +15,16 @@ CREATE TABLE ebdjango_user (
 
 insert into ebdjango_user(name, username, email, password) values ('RUISANTOS', 'rui', 'rui@gmail.com', 'rui')
 
+
+
+
+
+tabela medico
+
+nome, especialidade
+
+
+
+tabela marcacoes
+
+hora, dia, medico_id, user_id, status

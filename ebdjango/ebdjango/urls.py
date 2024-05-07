@@ -20,8 +20,16 @@ from django.db import router
 from django.urls import include, path
 from ebdjango.views import api_login
 from ebdjango.views import schedule
+from ebdjango.views import test
+from ebdjango.views import save
+from ebdjango.views import show
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("login/", api_login, name='api_login'),
-    path("home/",schedule, name="schedule")
+    path("home/",schedule, name="schedule"),
+    path("appointment/",schedule, name='schedule'),
+    path("test/",test, name='test'),
+    path("save/",save, name='save'),
+    path("my-appointments/",show, name="show")
 ]
