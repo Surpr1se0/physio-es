@@ -1,0 +1,43 @@
+.appointment-list {
+  font-family: sans-serif;
+  max-width: 80%; /* Limit width to 80% of the viewport */
+  margin: 0 auto; /* Center the list horizontally */
+}
+
+.appointment-list h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #007bff;
+}
+
+.appointment-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+.appointment-list li:hover {
+  background-color: #007bff;
+}
+
+
+.appointment-list li {
+  background-color: #e0e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items from the top */
+  color: #333;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.appointment-list li span {
+  flex: 1; /* Allow other spans to shrink and not reach the bottom */
+  font-weight: bold; /* Make item names bold */
+  margin-right: 1rem; /* Add margin to the right for spacing */
+}
+

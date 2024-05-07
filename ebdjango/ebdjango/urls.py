@@ -23,6 +23,8 @@ from ebdjango.views import schedule
 from ebdjango.views import test
 from ebdjango.views import save
 from ebdjango.views import show
+from ebdjango.views import listadmin
+from ebdjango.views import update
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,5 +33,7 @@ urlpatterns = [
     path("appointment/",schedule, name='schedule'),
     path("test/",test, name='test'),
     path("save/",save, name='save'),
-    path("my-appointments/",show, name="show")
+    path("my-appointments/",show, name="show"),
+    path("listadmin/",listadmin,name='listadmin'),
+    path("update/",update,name='update')
 ]

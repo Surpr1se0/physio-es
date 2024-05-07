@@ -124,7 +124,7 @@ def test(request):
    
     db = boto3.resource('dynamodb',region_name=region_name)
     
-    table = db.Table('appointments')
+    table = db.Table('appointments1')
     speciality = request.GET.get('speciality')
     doctor_name = request.GET.get('doctor')
 
@@ -134,7 +134,7 @@ def test(request):
         available_times = [{'doctor': doctor['name'], 'availability': doctor['availability']} for doctor in doctors_available_time if doctor['speciality'] == speciality and doctor['name'] == doctor_name]
         # Get the reserved appointments for the selected doctor and selected specialty
         response = client.query(
-            TableName='appointments',
+            TableName='appointments1',
             KeyConditionExpression='doctor_name = :doctor_name',
             FilterExpression='speciality = :speciality',
             ExpressionAttributeValues={
@@ -154,7 +154,7 @@ def test(request):
             dn = doctor['doctor']
             print(dn)
             response = client.query(
-                TableName='appointments',
+                TableName='appointments1',
                 KeyConditionExpression='doctor_name = :doctor_name',
                 FilterExpression='speciality = :speciality',
                 ExpressionAttributeValues={
@@ -192,7 +192,7 @@ def save(request):
    
     db = boto3.resource('dynamodb',region_name='us-east-1')
     
-    table = db.Table('appointments')
+    table = db.Table('appointments1')
 
     response = table.put_item(
         Item={
@@ -216,12 +216,12 @@ def show(request):
    
     db = boto3.resource('dynamodb',region_name='us-east-1')
     
-    table = db.Table('appointments')
+    table = db.Table('appointments1')
     User_id = request.GET.get('user')
     print(User_id)
     response = client.query(
         IndexName='username-index',
-        TableName='appointments',
+        TableName='appointments1',
         KeyConditionExpression='username = :username',
         ExpressionAttributeValues={
             ':username': {'S': User_id}
@@ -229,3 +229,61 @@ def show(request):
     )
     print(response['Items'])
     return Response(response['Items'])
+
+@api_view(['GET'])
+def listadmin(request):
+    
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  # Replace with your region
+
+    table = dynamodb.Table('appointments1')
+
+    
+    response = table.scan()
+    items = response['Items']
+    valor = []
+    for item in items:
+        valor.append(item)
+    print(valor)
+
+    
+    return Response(valor)
+
+
+
+
+@api_view(['PUT'])
+def update(request):
+    
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  # Replace with your region
+
+    table = dynamodb.Table('appointments1')
+
+    print(request.data)
+ 
+   
+    valor = request.data
+
+    
+    update_expression = 'SET #s = :val'
+    expression_attribute_names = {'#s': 'status'}
+    expression_attribute_values = {':val':  'finished'}
+    primary_key = {
+    'appointment_id': valor['id']  # Replace with the actual partition key value
+    }
+
+    table.update_item( 
+    Key=primary_key,
+        UpdateExpression=update_expression,
+        ExpressionAttributeNames=expression_attribute_names,
+        ExpressionAttributeValues=expression_attribute_values,
+        ReturnValues='UPDATED_NEW'  # Se desejar retornar os valores atualizados
+    )
+    
+    
+
+    return Response({
+            'message': 'Update successful'
+        })
+
+
+
