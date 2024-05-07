@@ -5,6 +5,7 @@ import '../styles/teste.css'
 import {jwtDecode} from 'jwt-decode';
 
 import axios from 'axios'; 
+import mainLogo from'../Images/logo-color.png';
 
 
 
@@ -24,7 +25,7 @@ const Teste = () => {
     setError(null);
     const response = await axios.put('http://localhost:8000/update/', updatedAppointment);
     console.log('Appointment status updated successfully!');
-    window.location.href = '/teste'
+    window.location.href = '/adminpage'
   };
 
   useEffect(() => {
@@ -39,8 +40,8 @@ const Teste = () => {
 
   return (
     <div className="appointment-list">
-      <div>
-        <img src="path/to/your/logo.png" alt="Logo (replace with alt text)"></img>
+      <div className="logo">
+      <img src={mainLogo} className="App-logo" alt="logo" />
       </div>
       
       <h2>Appointment List</h2>
@@ -54,9 +55,9 @@ const Teste = () => {
           <span>Day: {item.day}</span>
           <span>Hour: {item.hour}</span>
           <span>Status: {item.status}</span>
-          {item.status !== 'finished' && (
-                <button onClick={() => handleUpdateStatus(item.appointment_id)} disabled={isLoading}>
-                  Change Schedule to Finished
+          {item.status !== 'finished' && item.status !== 'pending_payment' && (
+                <button onClick={() => handleUpdateStatus(item.appointment_id)} disabled={isLoading} className='blue-button'>
+                  Change to Finished
                 </button>)
 }
         </li>

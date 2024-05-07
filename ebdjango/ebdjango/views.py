@@ -248,7 +248,8 @@ def listadmin(request):
 
     table = dynamodb.Table('appointments1')
 
-    
+   
+
     response = table.scan()
     items = response['Items']
     valor = []
@@ -271,8 +272,13 @@ def update(request):
 
     print(request.data)
  
-   
+   # Shock Waves, musculoskeletal physiotherapy,therapeutical massage, Evaluation Appointment
     valor = request.data
+  
+
+
+
+
 
     
     update_expression = 'SET #s = :val'

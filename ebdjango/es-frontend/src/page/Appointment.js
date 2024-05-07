@@ -6,7 +6,7 @@ import {jwtDecode} from 'jwt-decode';
 
 import axios from 'axios'; 
 import { useHistory } from 'react-router-dom';
-
+import mainLogo from'../Images/logo-color.png';
 
 const Appointment = () => {
   const [user, setUser] = useState(undefined);
@@ -22,7 +22,7 @@ const Appointment = () => {
     const token = localStorage.getItem('accessToken');
     if (token) {
       const token_decoded = await jwtDecode(token);
-      setUser(token_decoded.user_id);
+      setUser(token_decoded);
       console.log('User:', token_decoded.user_id);
       if (token_decoded && token_decoded.exp * 1000 < Date.now()) {
         setUser(undefined);
@@ -97,6 +97,15 @@ const Appointment = () => {
 
   return (
     <div className="app-container">
+      <div className="navbar">
+        <div className="item">Hello {user ? user.user_id : 'Convidado'}</div>
+        <div className="item">
+       
+            <img className="logo" src={mainLogo}  />
+         
+      </div>
+        <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+      </div>
       <h1 className="title">Physio</h1>
         <button className="logout-button" onClick={handleClick1}>Logout</button>
       <div className="selection-container">

@@ -53,3 +53,54 @@
     gap: 10px;
     justify-content: center;
   }
+
+
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white; /* Cor de fundo da barra de navegação (azul) */
+  color: blue; /* Cor do texto */
+  padding: 20px;
+}
+
+.item {
+  padding: 10px;
+}
+
+.logo {
+  width: 180px; /* Tamanho da logo */
+  height: auto; /* Mantém a proporção da altura */
+}
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #007bff; /* Cor de fundo dos botões (azul) */
+  color: #fff; /* Cor do texto */
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
+}

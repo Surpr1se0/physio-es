@@ -1,53 +1,48 @@
-/* styles.css */
-
 .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background-color: white; /* Cor de fundo da barra de navegação (azul) */
+  color: blue; /* Cor do texto */
+  padding: 20px;
+}
+
+.item {
+  padding: 10px;
+}
+
+.logo {
+  width: 180px; /* Tamanho da logo */
+  height: auto; /* Mantém a proporção da altura */
 }
 
 .title {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #007bff;
-
+  text-align: center;
+  margin-top: 20px;
 }
 
 .button-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 20px;
 }
 
 .button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #007bff; /* Cor de fundo dos botões (azul) */
+  color: #fff; /* Cor do texto */
   border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #0056b3;
-}
-
-
-.btn{
-  margin: 0 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.slot{
-  cursor: pointer;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import '../styles/HomePage.css'
 
 import {jwtDecode} from 'jwt-decode';
-
+import mainLogo from'../Images/logo-color.png';
 import axios from 'axios'; 
 
 
@@ -50,10 +50,22 @@ const Home = () => {
     };
   
     return (
+      
+      
       <div className="container">
+        <div className="navbar">
+        <div className="item">Hello {user ? user.user_id : 'Convidado'}</div>
+        <div className="item">
+       
+            <img className="logo" src={mainLogo}  />
+         
+      </div>
+        <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+      </div>
+      
         <h1 className="title">Physio</h1>
         <div className="button-container">
-          <button className="button" onClick={handleClick1}>Logout</button>
+        
           <button className="button" onClick={handleClick2}>Marcação</button>
           <button className="button" onClick={handleClick3}>Consultas Marcadas</button>
         </div>

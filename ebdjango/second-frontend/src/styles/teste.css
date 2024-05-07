@@ -19,7 +19,7 @@
 
 
 .appointment-list li:hover {
-  background-color: #007bff;
+  background-color: #7eb7f4;
 }
 
 
@@ -29,7 +29,6 @@
   padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: flex-start; /* Align items from the top */
   color: #333;
   transition: background-color 0.2s ease-in-out;
@@ -41,3 +40,26 @@
   margin-right: 1rem; /* Add margin to the right for spacing */
 }
 
+
+/* Additional styling for the logo (replace with your logo image path) */
+.logo {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center; /* Center align the logo */
+}
+
+.logo img {
+  width: 300px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  
+}
+
+
+.blue-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

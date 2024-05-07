@@ -28,3 +28,54 @@ nome, especialidade
 tabela marcacoes
 
 hora, dia, medico_id, user_id, status
+
+
+table.put_item(
+        Item={
+            'appointment_id': 1,
+            'doctor_name': 'Bruno',
+            'speciality': 'Shock Waves',
+            'day': 'Monday',
+            'hour': '1:00 PM',
+            'username': 'rui',
+            'status': 'schedule'
+        }
+    )
+
+    table.put_item(
+        Item={
+            'appointment_id': 2,
+            'doctor_name': 'bea',
+            'speciality': 'therapeutical massage',
+            'day': 'Monday',
+            'hour': '2:00 PM',
+            'username': 'tomas',
+            'status': 'schedule'
+        }
+    )
+
+
+
+table.put_item(
+        Item={
+            'appointment_id': 3,
+            'doctor_name': 'Bruno',
+            'speciality': 'Shock Waves',
+            'day': 'Monday',
+            'hour': '1:00 PM',
+            'username': 'rui',
+            'status': 'schedule'
+        }
+    )
+
+    table.put_item(
+        Item={
+            'appointment_id': 4,
+            'doctor_name': 'bea',
+            'speciality': 'therapeutical massage',
+            'day': 'Monday',
+            'hour': '4:00 PM',
+            'username': 'joao',
+            'status': 'finished'
+        }
+    )
