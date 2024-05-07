@@ -1,30 +1,60 @@
-.container {
-  max-width: 800px;
+.appointments-container {
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
-
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white; /* Cor de fundo da barra de navegação (azul) */
-  color: blue; /* Cor do texto */
-  padding: 20px;
+  display: flex; /* Use flexbox for the navbar */
+  justify-content: space-between; /* Distribute items horizontally with space between */
+  align-items: center; /* Vertically center items */
+  background-color: white; /* Background color of the navbar */
+  color: blue; /* Text color */
+  padding: 10px; /* Add padding for spacing */
 }
 
 .item {
+  flex: 1; /* Make each item take up equal space */
+  display: flex; /* Make each item a flexbox for centering */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 10px; /* Add padding for spacing */
+}
+
+/* Additional styling for the logo (replace with your logo image path) */
+.logo {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center; /* Center align the logo */
+  width: 180px; /* Adjust width as needed */
+}
+.Name {
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #007bff; /* Cor de fundo dos botões (azul) */
+  color: #fff; /* Cor do texto */
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff; /* Cor de fundo da barra de navegação (azul) */
+  color: #007bff; /* Cor do texto */
   padding: 10px;
 }
 
-.logo {
-  width: 180px; /* Tamanho da logo */
-  height: auto; /* Mantém a proporção da altura */
-}
+
+
 
 .title {
+  font-family: 'Courier New', Courier, monospace;
   text-align: center;
   margin-top: 20px;
+  color: #007bff;
 }
 
 .button-container {
@@ -34,11 +64,12 @@
 }
 
 .button {
+  font-size: 15px;
   background-color: #007bff; /* Cor de fundo dos botões (azul) */
   color: #fff; /* Cor do texto */
   border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 1px 20px;
+  margin: 0 15px;
   border-radius: 5px;
   cursor: pointer;
 }

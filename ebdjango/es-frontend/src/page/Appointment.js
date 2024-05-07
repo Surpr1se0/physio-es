@@ -6,7 +6,7 @@ import {jwtDecode} from 'jwt-decode';
 
 import axios from 'axios'; 
 import { useHistory } from 'react-router-dom';
-import mainLogo from'../Images/logo-color.png';
+import mainLogo from'../Images/logocolor.png';
 
 const Appointment = () => {
   const [user, setUser] = useState(undefined);
@@ -56,6 +56,7 @@ const Appointment = () => {
 
   useEffect(() => {
     readDoctors();
+    document.title = 'Appointment Schedule';
   }, []);
 
   const handleSpecialtyChange = (event) => {
@@ -75,7 +76,7 @@ const Appointment = () => {
 
   const redirectToAppointmentPage = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user}`);
+      const response = await axios.post(`http://localhost:8000/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id }`);
       console.log('Appointment Saved:', response.data);
       window.location.href = '/my-appointments';
     } catch (error) {
@@ -97,17 +98,22 @@ const Appointment = () => {
 
   return (
     <div className="app-container">
-      <div className="navbar">
-        <div className="item">Hello {user ? user.user_id : 'Convidado'}</div>
+        <div className="navbar">
         <div className="item">
-       
+          <h4 className='Name'>Hello {user ? user.user_id : 'Convidado'} </h4>
+        </div>
+        <div className="item">
+        <a href="/home">
             <img className="logo" src={mainLogo}  />
-         
+          </a>
+        </div>
+          <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+        </div>
+
+         <div className="line">
       </div>
-        <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
-      </div>
-      <h1 className="title">Physio</h1>
-        <button className="logout-button" onClick={handleClick1}>Logout</button>
+      <h1 className="title">Appointment Schedule</h1>
+       
       <div className="selection-container">
         <label>Select Specialty:</label>
         <select value={selectedSpecialty} onChange={handleSpecialtyChange}>
@@ -126,27 +132,30 @@ const Appointment = () => {
         <button onClick={fetchAvailableTimes}>Check Available Times</button>
       </div>
       <div className="appointment-times">
-  <h2>Available Appointment Times</h2>
-  {availableTimes.map((doctorAvailability, doctorIndex) => (
-    <div key={doctorIndex}>
-      <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {/* Display doctor's name */}
-      <ul>
-        {Object.keys(doctorAvailability.availability).map((day, dayIndex) => (
-          <li key={dayIndex}>
-            <strong>{day}:</strong>
-            <ul>
-              {doctorAvailability.availability[day].map((timeSlot, timeIndex) => (
-                
-                <li key={timeIndex} className='slot' onClick={() => handleTimeSlotSelect(timeSlot, doctorAvailability.doctor,day)}>
-                  {timeSlot}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </div>
-  ))}
+      <h2>Available Appointment Times</h2>
+{availableTimes.map((doctorAvailability, doctorIndex) => (
+  <div key={doctorIndex}>
+    <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {/* Display doctor's name */}
+    <ul>
+      {Object.keys(doctorAvailability.availability).map((day, dayIndex) => (
+        <li key={dayIndex}>
+          {doctorAvailability.availability[day].length >= 1 && ( // Verifica se há mais de um horário disponível para o dia
+            <>
+              <strong>{day}:</strong>
+              <ul>
+                {doctorAvailability.availability[day].map((timeSlot, timeIndex) => (
+                  <li key={timeIndex} className='slot' onClick={() => handleTimeSlotSelect(timeSlot, doctorAvailability.doctor,day)}>
+                    {timeSlot}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+))}
   {selectedTimeSlot && (
     <button className='btn' onClick={redirectToAppointmentPage}>Select Slot with {selectedDoctor} {selecteddaySlot} {selectedTimeSlot}</button>
   )}

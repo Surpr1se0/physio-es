@@ -3,6 +3,8 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import '../styles/Appointments.css'
 
+import mainLogo from'../Images/logocolor.png';
+
 const Appointments = () => {
   const [user, setUser] = useState(undefined);
   const [appointments, setAppointments] = useState([]);
@@ -48,20 +50,36 @@ const Appointments = () => {
 
   useEffect(() => {
     readAppointments();
+    document.title = 'Scheduled Appointments';
+    
   }, []);
 
   return (
-    <div className="appointments-container">
-      <h1>Appointments</h1>
-      <button className="logout-button" onClick={handleClick1}>Logout</button>
+    <div className="app-container">
+      <div className="app-container">
+      <div className="navbar">
+        <div className="item">
+          <h4 className='Name'>Hello {user ? user : 'Convidado'}</h4>
+        </div>
+        <div className="item">
+        <a href="/home">
+            <img className="logo" src={mainLogo}  />
+          </a>
+        </div>
+          <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+        </div>
+
+         <div className="line">
+      </div>
+      <h1 className="title">Historic</h1>
       <div className="appointments-list">
         {loading ? (
-          <p>Loading...</p>
+          <p className='Loading-Title'>Loading...</p>
         ) : (
           <ul>
             {appointments.map((appointment, index) => (
               <li key={index} className="appointment-item">
-                <div><strong>Username:</strong> {appointment.username.S}</div>
+                <div><strong>Name:</strong> {appointment.username.S}</div>
                 <div><strong>Day:</strong> {appointment.day.S}</div>
                 <div><strong>Hour:</strong> {appointment.hour.S}</div>
                 <div><strong>Doctor Name:</strong> {appointment.doctor_name.S}</div>
@@ -72,6 +90,7 @@ const Appointments = () => {
           </ul>
         )}
       </div>
+    </div>
     </div>
   );
 };

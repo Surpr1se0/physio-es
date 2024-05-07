@@ -4,6 +4,7 @@ import '../styles/LoginPage.css'
 import { useEffect, useState } from "react"
 import axios from 'axios'
 import {jwtDecode} from 'jwt-decode';
+import mainLogo from'../Images/logocolor.png';
 function Login(){
     
     const [user, setUser] = useState(undefined);
@@ -30,6 +31,7 @@ function Login(){
     };
     useEffect(() => {
         checkTokenExpiration();
+        document.title = 'Login';
     }, []);
 
 
@@ -81,8 +83,24 @@ function Login(){
         user ?
         <Navigate to="/home" />
         :
-        <div className="login">
-            
+        
+        <div className="appointment-container">
+            <link rel="icon" href={mainLogo} />
+            <div className="navbar">
+            <div className="item">
+            <h4 className='Name'>Hello! </h4>
+            </div>
+            <div className="item">
+        
+                <img className="logo" src={mainLogo}  />
+                        </div>
+            <div className="item"><h4 className='Name'>Welcome </h4></div>
+            </div>
+           
+
+            <div className="line">
+        </div>
+         <h2 className='Name2'>Login Page</h2>
             <div className="account" >
                 <input className="writingField" placeholder=" username" type="username" onChange={(e) => {setUsername(e.target.value);}}/>
                 <input className="writingField" placeholder=" Password" type="password" onChange={(e) => {setPassword(e.target.value);}}/>

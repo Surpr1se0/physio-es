@@ -9,6 +9,7 @@ import boto3
 from django.conf import settings
 from .models import User
 import os
+from operator import itemgetter
 
 
 doctors_available_time: dict = [
@@ -127,7 +128,7 @@ def test(request):
     table = db.Table('appointments1')
     speciality = request.GET.get('speciality')
     doctor_name = request.GET.get('doctor')
-
+    print(doctors_available_time)
     # Query available times based on the selected specialty and optionally the doctor's name
     if doctor_name:
         # If the doctor's name is provided, filter by both specialty and doctor's name
@@ -143,7 +144,9 @@ def test(request):
                 ':speciality': {'S': speciality}
             }
         )
+        print("COmeçou#")
         print(response['Items'])
+        print("AVAou\n")
         for item in response['Items']:
             if(item['day']['S'] in available_times[0]['availability']):
                 if(item['hour']['S'] in available_times[0]['availability'][item['day']['S']]):
@@ -172,7 +175,7 @@ def test(request):
                             times['availability'][item['day']['S']].remove(item['hour']['S'])
 
 
-    #print(available_times)
+    print(available_times)
     return Response(available_times)
 
 
@@ -238,7 +241,10 @@ def show(request):
         }
     )
     print(response['Items'])
-    return Response(response['Items'])
+    sorted_data = sorted(response['Items'], key=lambda x: (x['day']['S'], x['hour']['S']))
+    #sorted_items = sorted(response['Items'], key=itemgetter('day', 'hour'))
+
+    return Response(sorted_data)
 
 
 @api_view(['GET'])
@@ -252,13 +258,11 @@ def listadmin(request):
 
     response = table.scan()
     items = response['Items']
-    valor = []
-    for item in items:
-        valor.append(item)
-    print(valor)
-
     
-    return Response(valor)
+
+    sorted_items = sorted(items, key=itemgetter('day', 'hour'))
+    
+    return Response(sorted_items)
 
 
 
@@ -270,17 +274,8 @@ def update(request):
 
     table = dynamodb.Table('appointments1')
 
-    print(request.data)
- 
-   # Shock Waves, musculoskeletal physiotherapy,therapeutical massage, Evaluation Appointment
     valor = request.data
-  
-
-
-
-
-
-    
+   
     update_expression = 'SET #s = :val'
     expression_attribute_names = {'#s': 'status'}
     expression_attribute_values = {':val':  'finished'}
@@ -296,8 +291,6 @@ def update(request):
         ReturnValues='UPDATED_NEW'  # Se desejar retornar os valores atualizados
     )
     
-    
-
     return Response({
             'message': 'Update successful'
         })

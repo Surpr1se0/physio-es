@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import '../styles/HomePage.css'
 
 import {jwtDecode} from 'jwt-decode';
-import mainLogo from'../Images/logo-color.png';
-import axios from 'axios'; 
+import mainLogo from'../Images/logocolor.png';
+
 
 
 
@@ -31,13 +31,14 @@ const Home = () => {
     
     useEffect(() => {
       checkTokenExpiration();
+      document.title = 'Home';
     }, []);
    
     const handleClick1 = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('data'); 
-        window.location.href = '/login'; // Redirecione para a página de login
+        window.location.href = '/login';
       
     };
   
@@ -52,9 +53,9 @@ const Home = () => {
     return (
       
       
-      <div className="container">
+      <div className="app-container">
         <div className="navbar">
-        <div className="item">Hello {user ? user.user_id : 'Convidado'}</div>
+        <div className="item"><h4 className='Name'>Hello {user ? user.user_id : 'Convidado'} </h4></div>
         <div className="item">
        
             <img className="logo" src={mainLogo}  />
@@ -62,12 +63,14 @@ const Home = () => {
       </div>
         <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
       </div>
-      
-        <h1 className="title">Physio</h1>
+
+      <div className="line">
+      </div>
+        <h1 className="title">OPTIONS</h1>
         <div className="button-container">
         
-          <button className="button" onClick={handleClick2}>Marcação</button>
-          <button className="button" onClick={handleClick3}>Consultas Marcadas</button>
+          <button className="button" onClick={handleClick2}>Appointment Schedule</button>
+          <button className="button" onClick={handleClick3}>Scheduled Appointments</button>
         </div>
       </div>
     );
