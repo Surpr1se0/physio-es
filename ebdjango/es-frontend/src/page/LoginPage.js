@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import axios from 'axios'
 import {jwtDecode} from 'jwt-decode';
 import mainLogo from'../Images/logocolor.png';
+import frec from'../Images/frec.png';
 function Login(){
     
     const [user, setUser] = useState(undefined);
@@ -105,6 +106,13 @@ function Login(){
                 <input className="writingField" placeholder=" username" type="username" onChange={(e) => {setUsername(e.target.value);}}/>
                 <input className="writingField" placeholder=" Password" type="password" onChange={(e) => {setPassword(e.target.value);}}/>
                 <button onClick={() => login()} className="btn"> Login </button>
+                {
+                    errors.map((error, index) => <div key={index} className="error">{error}</div>)
+                }
+            </div>
+            <div className="Login2">
+            <img className="logo2" src={frec}  />
+                <button onClick={() => login()} className="fr-login"> Login With Facial Recognition </button>
                 {
                     errors.map((error, index) => <div key={index} className="error">{error}</div>)
                 }

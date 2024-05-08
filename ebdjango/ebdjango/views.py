@@ -10,7 +10,7 @@ from django.conf import settings
 from .models import User
 import os
 from operator import itemgetter
-
+from . import aws_step_func
 
 doctors_available_time: dict = [
   {
@@ -220,7 +220,7 @@ def save(request):
     )
     status_code = response['ResponseMetadata']['HTTPStatusCode']
 
-
+    aws_step_func.start_step_function(User_id, str(next_id))
     return Response(status_code)
 
 @api_view(['GET'])
@@ -295,5 +295,40 @@ def update(request):
             'message': 'Update successful'
         })
 
+@api_view(['POST'])
+def pay(request):
+    client = boto3.client('dynamodb', region_name='us-east-1')
+    appointment_id = request.GET.get('appointment')
+    User_id = request.GET.get('user')
+    print(appointment_id)
+    response = client.get_item(
+        TableName='appointments1',
+        Key={
+            'appointment_id': {'N':appointment_id}
+        }
+    )
+    if 'Item' not in response:
+        return Response({
+            'message': 'Appointment not found'
+        })
+    item = response['Item']
+    print(item['status']['S'])
+    if item['status']['S'] == 'finished':
+        return Response({
+            'message': 'Payment already done'
+        })
+    elif item['status']['S'] == 'Payment in progress':
+        return Response({
+            'message': 'Payment already in progress'
+        })
+    else:
+        item['status'] = {'S':'Payment in progress'}
+        client.put_item(
+            TableName='appointments1',
+            Item=item)
+        aws_step_func.payment_step(appointment_id, str(50), User_id)
+        return Response({
+            'message': 'Payment in progress'
+        })
 
 

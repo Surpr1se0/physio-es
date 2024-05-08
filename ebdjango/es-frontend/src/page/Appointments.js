@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import '../styles/Appointments.css'
+import '../styles/Appointments.css';
 
-import mainLogo from'../Images/logocolor.png';
+import mainLogo from '../Images/logocolor.png';
 
 const Appointments = () => {
   const [user, setUser] = useState(undefined);
@@ -37,7 +37,7 @@ const Appointments = () => {
   };
 
   const readAppointments = async () => {
-    const usr = await jwtDecode(localStorage.getItem('accessToken')).user_id
+    const usr = await jwtDecode(localStorage.getItem('accessToken')).user_id;
     try {
       const response = await axios.get(`http://localhost:8000/my-appointments/?user=${usr}`);
       setAppointments(response.data);
@@ -47,30 +47,40 @@ const Appointments = () => {
     }
   };
 
-
   useEffect(() => {
     readAppointments();
     document.title = 'Scheduled Appointments';
-    
   }, []);
+
+  const handlePayment = async (appointmentId) => {
+    console.log('Payment for appointment ID:', appointmentId.N);
+    const usr = await jwtDecode(localStorage.getItem('accessToken')).user_id;
+    try {
+      const response = await axios.post(`http://localhost:8000/payment/?user=${usr}&appointment=${appointmentId.N}`);
+      console.log('Payment response:', response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    }
+  };
 
   return (
     <div className="app-container">
-      <div className="app-container">
       <div className="navbar">
         <div className="item">
           <h4 className='Name'>Hello {user ? user : 'Convidado'}</h4>
         </div>
         <div className="item">
-        <a href="/home">
-            <img className="logo" src={mainLogo}  />
+          <a href="/home">
+            <img className="logo" src={mainLogo} alt="Main Logo" />
           </a>
         </div>
-          <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+        <div className="item">
+          <button className="button" onClick={handleClick1}>Logout</button>
         </div>
-
-         <div className="line">
       </div>
+
+      <div className="line"></div>
       <h1 className="title">Historic</h1>
       <div className="appointments-list">
         {loading ? (
@@ -85,12 +95,14 @@ const Appointments = () => {
                 <div><strong>Doctor Name:</strong> {appointment.doctor_name.S}</div>
                 <div><strong>Status:</strong> {appointment.status.S}</div>
                 <div><strong>Speciality:</strong> {appointment.speciality.S}</div>
+                {appointment.status.S === 'pending_payment' && (
+                  <button onClick={() => handlePayment(appointment.appointment_id)}>Pay Now</button>
+                )}
               </li>
             ))}
           </ul>
         )}
       </div>
-    </div>
     </div>
   );
 };
