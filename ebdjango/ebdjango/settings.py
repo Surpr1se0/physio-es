@@ -102,10 +102,10 @@ WSGI_APPLICATION = 'ebdjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'database-1.cgakkke3mf3d.us-east-1.rds.amazonaws.com',
         'PORT':'5432',
     }
 }
