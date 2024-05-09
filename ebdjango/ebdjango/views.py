@@ -12,6 +12,7 @@ import os
 from operator import itemgetter
 from . import aws_step_func
 
+
 doctors_available_time: dict = [
   {
     "name": "Francisco",

@@ -39,7 +39,7 @@ const Appointments = () => {
   const readAppointments = async () => {
     const usr = await jwtDecode(localStorage.getItem('accessToken')).user_id;
     try {
-      const response = await axios.get(`http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/my-appointments/?user=${usr}`);
+      const response = await axios.get(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/my-appointments/?user=${usr}`);
       setAppointments(response.data);
       setLoading(false);
     } catch (error) {
@@ -56,7 +56,7 @@ const Appointments = () => {
     console.log('Payment for appointment ID:', appointmentId.N);
     const usr = await jwtDecode(localStorage.getItem('accessToken')).user_id;
     try {
-      const response = await axios.post(`http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/payment/?user=${usr}&appointment=${appointmentId.N}`);
+      const response = await axios.post(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/payment/?user=${usr}&appointment=${appointmentId.N}`);
       console.log('Payment response:', response.data);
       window.location.reload();
     } catch (error) {
