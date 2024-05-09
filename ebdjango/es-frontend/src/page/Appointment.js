@@ -46,7 +46,7 @@ const Appointment = () => {
 
   const readDoctors = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/appointment/');
+      const response = await axios.get('http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/appointment/');
       setDoctors(response.data);
       console.log('List of Doctors:', response.data);
     } catch (error) {
@@ -76,7 +76,7 @@ const Appointment = () => {
 
   const redirectToAppointmentPage = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id }`);
+      const response = await axios.post(`http://http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id }`);
       console.log('Appointment Saved:', response.data);
       window.location.href = '/my-appointments';
     } catch (error) {
@@ -88,7 +88,7 @@ const Appointment = () => {
   const fetchAvailableTimes = async () => {
     setSelectedTimeSlot(null);
     try {
-      const response = await axios.get(`http://localhost:8000/test/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}`);
+      const response = await axios.get(`http://http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/test/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}`);
       setAvailableTimes(response.data);
       console.log('Available Times:', response.data);
     } catch (error) {

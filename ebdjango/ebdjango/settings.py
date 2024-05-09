@@ -35,15 +35,16 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 ALLOWED_HOSTS = [
+    #'django-env.eba-sphg7ncg.us-east-1.elasticbeanstalk.com',
 
    # 'django-env.eba-x74u7kxb.us-east-1.elasticbeanstalk.com',
    # '127.0.0.1'
-
+    '*'
 ]
 
 
 CSRF_TRUSTED_ORIGINS = [
-
+    'http://django-env.eba-sphg7ncg.us-east-1.elasticbeanstalk.com/',
     'https://django-env.eba-x74u7kxb.us-east-1.elasticbeanstalk.com',
     'https://127.0.0.1:8000'
 

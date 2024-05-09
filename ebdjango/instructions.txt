@@ -13,8 +13,9 @@ CREATE TABLE ebdjango_user (
 );
 
 
-insert into ebdjango_user(name, username, email, password) values ('RUISANTOS', 'rui', 'rui@gmail.com', 'rui')
-
+insert into ebdjango_user(name, username, email, password) values ('RUISANTOS', 'rui', 'rui@gmail.com', 'rui');
+insert into ebdjango_user(name, username, email, password) values ('BRUNO', 'bruno', 'bruno@gmail.com', 'bruno');
+insert into ebdjango_user(name, username, email, password) values ('francisco', 'francisco', 'francisco@gmail.com', 'francisco');
 
 
 

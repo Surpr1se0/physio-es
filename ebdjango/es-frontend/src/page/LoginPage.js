@@ -52,7 +52,7 @@ function Login(){
         setErrors(error)
 
         if(val === 0){
-            axios.post('http://localhost:8000/login/', { username, password })
+            axios.post('http://phisioes-env.eba-2unjaz67.us-east-1.elasticbeanstalk.com/login/', { username, password })
             .then(res => {
                 if(res.data.valid === '1') {
                     //====== TOKEN =========

@@ -9,7 +9,7 @@ import Home from './page/HomePage';
 import Appointment from './page/Appointment';
 
 import Appointments from './page/Appointments';
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,6 +19,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/home' element={<Home />} />
       <Route path='/appointment' element={<Appointment />} />
       <Route path='/my-appointments' element={<Appointments />} />
+      <Route path="/" element={<Navigate to="/home" />} />
+
     </Routes>
   </BrowserRouter>
 
