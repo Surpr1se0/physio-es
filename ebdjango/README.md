@@ -19,3 +19,6 @@ npm install
 npm run build
 npm start
 ```
+## Lambda Function - Psycopg2
+
+Use the zip file, python.zip and upload into aws lambda function.
