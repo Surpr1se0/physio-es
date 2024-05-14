@@ -1,0 +1,75 @@
+openapi: 3.0.2
+info:
+  title: My React App API
+  version: 1.0.0
+  description: API documentation for My React App
+servers:
+  - url: http://localhost:3000
+paths:
+  /login:
+    post:
+      summary: Authenticate user
+      description: Endpoint to authenticate user.
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+  /home:
+    get:
+      summary: Get home page data
+      description: Endpoint to fetch data for the home page.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomeData'
+  /appointment:
+    post:
+      summary: Create appointment
+      description: Endpoint to create a new appointment.
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  /my-appointments:
+    get:
+      summary: Get user's appointments
+      description: Endpoint to fetch user's appointments.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+components:
+  schemas:
+    HomeData:
+      type: object
+      properties:
+        message:
+          type: string
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time

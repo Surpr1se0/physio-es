@@ -26,8 +26,15 @@ from ebdjango.views import show
 from ebdjango.views import listadmin
 from ebdjango.views import update
 from ebdjango.views import pay
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
+    path('api_schema', get_schema_view(title='Api Schema',description='API for appointments',version='1.0.0'), name='api_schema'),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='docs.html',
+        extra_context={'schema_url':'api_schema'}
+        ), name='swagger-ui'),
     path("admin/", admin.site.urls),
     path("login/", api_login, name='api_login'),
     path("home/",schedule, name="schedule"),
