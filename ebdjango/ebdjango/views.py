@@ -302,6 +302,7 @@ def pay(request):
     appointment_id = request.GET.get('appointment')
     User_id = request.GET.get('user')
     print(appointment_id)
+    print(User_id)
     response = client.get_item(
         TableName='appointments1',
         Key={

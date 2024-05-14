@@ -15,6 +15,7 @@ def lambda_handler(event, context):
         password="postgres", 
         host="database-1.cgakkke3mf3d.us-east-1.rds.amazonaws.com", port="5432")
     
+  conn.autocommit = True
   cur = conn.cursor()
   # Perform idempotent payment logic
   try:
@@ -40,10 +41,11 @@ def lambda_handler(event, context):
         
     elif item['status']['S'] == 'Payment in progress':
       item['status'] = {'S':'schedule'}
-      cur.execute("select money from edjango_user where id=%d",user_id)
+      cur.execute("SELECT money FROM ebdjango_user WHERE username = %s", (user_id,))
       rows = cur.fetchall()
-      user_money = rows[0] - payment_amount
-      cur.execute("UPDATE ebdjango_user set money = %d where id=%d",user_money,user_id)
+      user_money = rows[0][0] - int(payment_amount)
+      #user_money = 1234
+      cur.execute("UPDATE ebdjango_user SET money = %s WHERE username = %s", (user_money, user_id))
       client.put_item(TableName='appointments1',Item=item)
 
       return {
@@ -58,5 +60,5 @@ def lambda_handler(event, context):
     print(f"Error processing payment: {str(e)}")
     return {
       'statusCode': 500,
-      'body': json.dumps({'error': 'Failed to process payment'})
+      'body': json.dumps({'error': str(e)})
     }
