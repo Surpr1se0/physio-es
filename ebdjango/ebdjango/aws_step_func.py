@@ -20,7 +20,7 @@ def payment_step(appointment_id,payment_amount,user):
     response = client.start_execution(
         stateMachineArn='arn:aws:states:us-east-1:930441988510:stateMachine:MyStateMachine-r8pcrrglz',
         name='paymentControl' + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"),
-        input='{"appointment_id": "' + appointment_id + '","payment_amount": "' + payment_amount + '","user": "' + user +'"}'
+        input='{"appointment_id": "' + appointment_id + '","payment_amount": "' + payment_amount + '","user_id": "' + user +'"}'
     )
     print(response['executionArn'])
     return response['executionArn']
