@@ -2,11 +2,11 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import '../styles/Appointments.css'
 
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
-import axios from 'axios'; 
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import mainLogo from'../Images/logocolor.png';
+import mainLogo from '../Images/logocolor.png';
 
 const Appointment = () => {
   const [user, setUser] = useState(undefined);
@@ -16,6 +16,7 @@ const Appointment = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [selecteddaySlot, setselecteddaySlot] = useState(null);
+  const [selectedTimeSlotHour, setSelectedTimeSlotHour] = useState(null);
 
 
   const checkTokenExpiration = async () => {
@@ -26,10 +27,10 @@ const Appointment = () => {
       console.log('User:', token_decoded.user_id);
       if (token_decoded && token_decoded.exp * 1000 < Date.now()) {
         setUser(undefined);
-        window.location.href = '/login'; 
+        window.location.href = '/login';
       }
     } else {
-      window.location.href = '/login'; 
+      window.location.href = '/login';
     }
   };
 
@@ -40,7 +41,7 @@ const Appointment = () => {
   const handleClick1 = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('data'); 
+    localStorage.removeItem('data');
     window.location.href = '/login'; // Redirect to the login page
   };
 
@@ -68,15 +69,28 @@ const Appointment = () => {
     setSelectedDoctor(event.target.value);
   };
 
-  const handleTimeSlotSelect = (timeSlot,doctorIndex,day) => {
-    setselecteddaySlot(day);
-    setSelectedTimeSlot(timeSlot);
-    setSelectedDoctor(doctorIndex);
+  const handleTimeSlotSelect = (index, doctorIndex, day, timeSlot) => {
+
+
+
+    if (selectedTimeSlot === index && selectedDoctor === doctorIndex && selecteddaySlot === day) {
+      // Se estiver selecionado, desmarca o horário
+      setselecteddaySlot(null);
+      setSelectedTimeSlot(null);
+      setSelectedDoctor(null);
+      setSelectedTimeSlotHour(null);
+    } else {
+      setselecteddaySlot(day);
+      setSelectedTimeSlot(index);
+      setSelectedDoctor(doctorIndex);
+      setSelectedTimeSlotHour(timeSlot);
+    }
+
   };
 
   const redirectToAppointmentPage = async () => {
     try {
-      const response = await axios.post(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id }`);
+      const response = await axios.post(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id}`);
       console.log('Appointment Saved:', response.data);
       window.location.href = '/my-appointments';
     } catch (error) {
@@ -98,22 +112,22 @@ const Appointment = () => {
 
   return (
     <div className="app-container">
-        <div className="navbar">
+      <div className="navbar">
         <div className="item">
           <h4 className='Name'>Hello {user ? user.user_id : 'Convidado'} </h4>
         </div>
         <div className="item">
-        <a href="/home">
-            <img className="logo" src={mainLogo}  />
+          <a href="/home">
+            <img className="logo" src={mainLogo} />
           </a>
         </div>
-          <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
-        </div>
+        <div className="item"> <button className="button" onClick={handleClick1}>Logout</button></div>
+      </div>
 
-         <div className="line">
+      <div className="line">
       </div>
       <h1 className="title">Appointment Schedule</h1>
-       
+
       <div className="selection-container">
         <label>Select Specialty:</label>
         <select value={selectedSpecialty} onChange={handleSpecialtyChange}>
@@ -132,34 +146,41 @@ const Appointment = () => {
         <button onClick={fetchAvailableTimes}>Check Available Times</button>
       </div>
       <div className="appointment-times">
-      <h2>Available Appointment Times</h2>
-{availableTimes.map((doctorAvailability, doctorIndex) => (
-  <div key={doctorIndex}>
-    <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {/* Display doctor's name */}
-    <ul>
-      {Object.keys(doctorAvailability.availability).map((day, dayIndex) => (
-        <li key={dayIndex}>
-          {doctorAvailability.availability[day].length >= 1 && ( // Verifica se há mais de um horário disponível para o dia
-            <>
-              <strong>{day}:</strong>
-              <ul>
-                {doctorAvailability.availability[day].map((timeSlot, timeIndex) => (
-                  <li key={timeIndex} className='slot' onClick={() => handleTimeSlotSelect(timeSlot, doctorAvailability.doctor,day)}>
-                    {timeSlot}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </li>
-      ))}
-    </ul>
-  </div>
-))}
-  {selectedTimeSlot && (
-    <button className='btn' onClick={redirectToAppointmentPage}>Select Slot with {selectedDoctor} {selecteddaySlot} {selectedTimeSlot}</button>
-  )}
-</div>
+        <h2>Available Appointment Times</h2>
+        {availableTimes.map((doctorAvailability, doctorIndex) => (
+          <div key={doctorIndex}>
+            <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {/* Display doctor's name */}
+            <ul>
+              {Object.keys(doctorAvailability.availability).map((day, dayIndex) => (
+                <li key={dayIndex}>
+                  {doctorAvailability.availability[day].length >= 1 && ( // Verifica se há mais de um horário disponível para o dia
+                    <>
+                      <strong>{day}:</strong>
+                      <ul>
+                        {doctorAvailability.availability[day].map((timeSlot, timeIndex) => (
+
+                          <li
+                            key={timeIndex}
+
+                            className={`slot ${selectedTimeSlot === ((doctorIndex + 1) * 15 + (dayIndex + 1) * 3 + (timeIndex + 1) * 10) ? 'selected' : ''}`}
+                            onClick={() => handleTimeSlotSelect(((doctorIndex + 1) * 15 + (dayIndex + 1) * 3 + (timeIndex + 1) * 10), doctorAvailability.doctor, day, timeSlot)}
+                          >
+
+                            {timeSlot}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        {selectedTimeSlot && (
+          <button className='btn' onClick={redirectToAppointmentPage}>Select Slot with {selectedDoctor} {selecteddaySlot} {selectedTimeSlotHour}</button>
+        )}
+      </div>
 
     </div>
   );

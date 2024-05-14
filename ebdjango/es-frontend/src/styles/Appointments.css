@@ -1,40 +1,54 @@
-
-
 .appointments-container {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
+
 .navbar {
-  display: flex; /* Use flexbox for the navbar */
-  justify-content: space-between; /* Distribute items horizontally with space between */
-  align-items: center; /* Vertically center items */
-  background-color: white; /* Background color of the navbar */
-  color: blue; /* Text color */
-  padding: 10px; /* Add padding for spacing */
+  display: flex;
+  /* Use flexbox for the navbar */
+  justify-content: space-between;
+  /* Distribute items horizontally with space between */
+  align-items: center;
+  /* Vertically center items */
+  background-color: white;
+  /* Background color of the navbar */
+  color: blue;
+  /* Text color */
+  padding: 10px;
+  /* Add padding for spacing */
 }
 
 .item {
-  flex: 1; /* Make each item take up equal space */
-  display: flex; /* Make each item a flexbox for centering */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  padding: 10px; /* Add padding for spacing */
+  flex: 1;
+  /* Make each item take up equal space */
+  display: flex;
+  /* Make each item a flexbox for centering */
+  justify-content: center;
+  /* Center content horizontally */
+  align-items: center;
+  /* Center content vertically */
+  padding: 10px;
+  /* Add padding for spacing */
 }
 
 /* Additional styling for the logo (replace with your logo image path) */
 .logo {
   display: block;
   margin-bottom: 1rem;
-  text-align: center; /* Center align the logo */
-  width: 180px; /* Adjust width as needed */
+  text-align: center;
+  /* Center align the logo */
+  width: 180px;
+  /* Adjust width as needed */
 }
 
 .Name {
   font-size: 14px;
   font-family: 'Courier New', Courier, monospace;
-  background-color: #007bff; /* Cor de fundo dos botões (azul) */
-  color: #fff; /* Cor do texto */
+  background-color: #007bff;
+  /* Cor de fundo dos botões (azul) */
+  color: #fff;
+  /* Cor do texto */
   border: none;
   padding: 10px 20px;
   margin: 0 10px;
@@ -46,8 +60,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #007bff; /* Cor de fundo da barra de navegação (azul) */
-  color: #007bff; /* Cor do texto */
+  background-color: #007bff;
+  /* Cor de fundo da barra de navegação (azul) */
+  color: #007bff;
+  /* Cor do texto */
   padding: 10px;
 }
 
@@ -62,40 +78,52 @@
 
 .appointments-list {
   font-family: Arial, sans-serif;
-  max-width: 800px; /* Define a largura máxima da lista */
-  margin: 0 auto; /* Centraliza a lista horizontalmente */
+  max-width: 800px;
+  /* Define a largura máxima da lista */
+  margin: 0 auto;
+  /* Centraliza a lista horizontalmente */
 }
 
 .appointments-list ul {
-  
-  list-style: none; /* Remove os marcadores da lista */
-  padding: 0; /* Remove o preenchimento padrão da lista */
+
+  list-style: none;
+  /* Remove os marcadores da lista */
+  padding: 0;
+  /* Remove o preenchimento padrão da lista */
 }
 
 
 .appointment-item {
-  border: 2px solid #007bff; 
-  background-color: #f9f9f9; /* Cor de fundo dos itens */
-  border-radius: 8px; /* Arredonda as bordas dos itens */
-  padding: 20px; /* Adiciona preenchimento interno aos itens */
-  margin-bottom: 20px; /* Adiciona margem inferior para separar os itens */
+  border: 2px solid #007bff;
+  background-color: #f9f9f9;
+  /* Cor de fundo dos itens */
+  border-radius: 8px;
+  /* Arredonda as bordas dos itens */
+  padding: 20px;
+  /* Adiciona preenchimento interno aos itens */
+  margin-bottom: 20px;
+  /* Adiciona margem inferior para separar os itens */
 }
 
 
 
 .appointment-item div {
-  margin-bottom: 10px; /* Adiciona margem inferior entre os elementos dentro de um item */
+  margin-bottom: 10px;
+  /* Adiciona margem inferior entre os elementos dentro de um item */
 }
 
 .appointment-item strong {
-  font-weight: bold; /* Torna os rótulos em negrito */
+  font-weight: bold;
+  /* Torna os rótulos em negrito */
 }
 
 .Loading-Title {
   font-family: 'Courier New', Courier, monospace;
   font-size: 20px;
-  text-align: center; /* Centraliza o texto de carregamento */
-  margin-top: 20px; /* Adiciona margem superior ao texto de carregamento */
+  text-align: center;
+  /* Centraliza o texto de carregamento */
+  margin-top: 20px;
+  /* Adiciona margem superior ao texto de carregamento */
   color: #0056b3;
 }
 
@@ -111,8 +139,10 @@
 
 .button {
   font-family: 'Courier New', Courier, monospace;
-  background-color: #007bff; /* Cor de fundo dos botões (azul) */
-  color: #fff; /* Cor do texto */
+  background-color: #007bff;
+  /* Cor de fundo dos botões (azul) */
+  color: #fff;
+  /* Cor do texto */
   border: none;
   padding: 10px 20px;
   margin: 0 10px;
@@ -122,7 +152,8 @@
 }
 
 .button:hover {
-  background-color: #0056b3; /* Cor de fundo dos botões ao passar o mouse */
+  background-color: #0056b3;
+  /* Cor de fundo dos botões ao passar o mouse */
 }
 
 
@@ -153,39 +184,55 @@
 
 /* Estilos para o container de seleção */
 .selection-container {
-  display: flex; /* Exibe os elementos em linha */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  margin-bottom: 20px; /* Margem inferior */
+  display: flex;
+  /* Exibe os elementos em linha */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  margin-bottom: 20px;
+  /* Margem inferior */
 }
 
 /* Estilos para as etiquetas de seleção */
 .selection-container label {
- 
-  margin-right: 10px; /* Margem à direita para espaçamento */
+
+  margin-right: 10px;
+  /* Margem à direita para espaçamento */
 }
 
 /* Estilos para o seletor de especialidade e de médico */
 .selection-container select {
-  padding: 8px; /* Preenchimento interno */
-  border-radius: 5px; /* Borda arredondada */
-  border: 1px solid #007bff; /* Borda cinza */
-  margin-right: 20px; /* Margem à direita para espaçamento */
+  padding: 8px;
+  /* Preenchimento interno */
+  border-radius: 5px;
+  /* Borda arredondada */
+  border: 1px solid #007bff;
+  /* Borda cinza */
+  margin-right: 20px;
+  /* Margem à direita para espaçamento */
 }
 
 /* Estilos para o botão "Check Available Times" */
 .selection-container button {
-  background-color: #007bff; /* Cor de fundo azul */
-  color: white; /* Cor do texto branco */
-  border: none; /* Remove a borda */
-  padding: 10px 20px; /* Preenchimento interno */
-  border-radius: 5px; /* Borda arredondada */
-  cursor: pointer; /* Cursor de ponteiro ao passar */
+  background-color: #007bff;
+  /* Cor de fundo azul */
+  color: white;
+  /* Cor do texto branco */
+  border: none;
+  /* Remove a borda */
+  padding: 10px 20px;
+  /* Preenchimento interno */
+  border-radius: 5px;
+  /* Borda arredondada */
+  cursor: pointer;
+  /* Cursor de ponteiro ao passar */
 }
 
 /* Estilos para o contêiner de horários de compromisso */
 .appointment-times {
-  text-align: center; /* Centraliza o texto */
+  text-align: center;
+  /* Centraliza o texto */
 }
 
 
@@ -197,71 +244,100 @@
 
 
 h2 {
-  text-align: center; /* Centraliza o texto */
-  color: #007bff; /* Cor azul */
-  margin-bottom: 40px; /* Margem inferior */
+  text-align: center;
+  /* Centraliza o texto */
+  color: #007bff;
+  /* Cor azul */
+  margin-bottom: 40px;
+  /* Margem inferior */
 }
 
 /* Estilos para a lista de horários de consulta */
 ul {
-  list-style: none; /* Remove os marcadores da lista */
-  padding: 0; /* Remove o preenchimento padrão da lista */
+  list-style: none;
+  /* Remove os marcadores da lista */
+  padding: 0;
+  /* Remove o preenchimento padrão da lista */
 }
 
 /* Estilos para o nome do médico */
 h3 {
-  color: #333; /* Cor do texto preto */
-  margin-bottom: 10px; /* Margem inferior */
+  color: #333;
+  /* Cor do texto preto */
+  margin-bottom: 10px;
+  /* Margem inferior */
 }
 
 /* Estilos para os dias disponíveis */
-ul > li > strong {
-  font-weight: bold; /* Torna o texto em negrito */
-  margin-bottom: 10px; /* Margem inferior */
+ul>li>strong {
+  font-weight: bold;
+  /* Torna o texto em negrito */
+  margin-bottom: 10px;
+  /* Margem inferior */
 }
 
 /* Estilos para os slots de horários disponíveis */
 .slot {
-  
-  background-color: #f9f9f9; /* Cor de fundo cinza claro */
-  padding: 10px 10px; /* Remove o preenchimento padrão da lista */
-  margin-bottom: 5px; /* Margem inferior */
-  border-radius: 25px; /* Borda arredondada */
+
+  background-color: #f9f9f9;
+  /* Cor de fundo cinza claro */
+  padding: 10px 10px;
+  /* Remove o preenchimento padrão da lista */
+  margin-bottom: 5px;
+  /* Margem inferior */
+  border-radius: 25px;
+  /* Borda arredondada */
   margin-left: 40%;
   margin-right: 40%;
-  border: 1px solid #007bff; /* Borda cinza */
- 
-  cursor: pointer; /* Cursor de ponteiro ao passar */
+  border: 1px solid #007bff;
+  /* Borda cinza */
+
+  cursor: pointer;
+  /* Cursor de ponteiro ao passar */
 }
 
 .slot:hover {
-  background-color: #007bff;
- }
+  background-color: #6baef5;
+}
 
 
 
 /* Estilos para o botão "Select Slot" */
 .btn2 {
-  
 
 
-  background-color: #007bff; /* Cor de fundo azul */
-  color: white; /* Cor do texto branco */
-  padding: 10px 10px; /* Preenchimento interno */
-  border-radius: 5px; /* Borda arredondada */
-  font-size: 20px;
-  cursor: pointer; /* Cursor de ponteiro ao passar */
 
-  margin-top: 20px; /* Margem superior */
- 
-}
-.PaymentButton{
-  background-color: #007bff; 
+  background-color: #007bff;
+  /* Cor de fundo azul */
   color: white;
- 
-  border-radius: 5px; 
+  /* Cor do texto branco */
+  padding: 10px 10px;
+  /* Preenchimento interno */
+  border-radius: 5px;
+  /* Borda arredondada */
+  font-size: 20px;
+  cursor: pointer;
+  /* Cursor de ponteiro ao passar */
 
-  cursor: pointer; 
+  margin-top: 20px;
+  /* Margem superior */
 
-  margin-top: 20px; 
+}
+
+.PaymentButton {
+  background-color: #007bff;
+  color: white;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  margin-top: 20px;
+}
+
+.selected {
+  background-color: #007bff;
+  /* Cor de fundo azul */
+  color: white;
+  /* Texto branco para contraste */
 }

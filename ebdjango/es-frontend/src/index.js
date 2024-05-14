@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/my-appointments' element={<Appointments />} />
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/swagger" element={<SwaggerUI url="swagger.yml" />} />
-    
+
     </Routes>
   </BrowserRouter>
 

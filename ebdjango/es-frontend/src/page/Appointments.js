@@ -96,7 +96,7 @@ const Appointments = () => {
                 <div><strong>Status:</strong> {appointment.status.S}</div>
                 <div><strong>Speciality:</strong> {appointment.speciality.S}</div>
                 {appointment.status.S === 'pending_payment' && (
-                  <button onClick={() => handlePayment(appointment.appointment_id)}>Pay Now</button>
+                  <button className="PaymentButton" onClick={() => handlePayment(appointment.appointment_id)}>Pay Now</button>
                 )}
               </li>
             ))}
