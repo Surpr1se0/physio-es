@@ -47,7 +47,7 @@ const Appointment = () => {
 
   const readDoctors = async () => {
     try {
-      const response = await axios.get('http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/appointment/');
+      const response = await axios.get('http://localhost:8000/appointment/');
       setDoctors(response.data);
       console.log('List of Doctors:', response.data);
     } catch (error) {

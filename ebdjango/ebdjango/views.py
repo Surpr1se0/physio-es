@@ -63,6 +63,29 @@ doctors_available_time: dict = [
   }
 ]
 
+doctors_rooms: dict = [
+    {
+        "name":"Bruno",
+        "room":"C1"
+    },
+    {
+        "name":"Pedro",
+        "room":"C2"
+    },
+    {
+        "name":"Yuri",
+        "room":"C3"
+    },
+    {
+        "name":"rui",
+        "room":"C4"
+    },
+    {
+        "name":"Francisco",
+        "room":"C5"
+    }
+]
+
 
 
 
@@ -246,6 +269,51 @@ def show(request):
     #sorted_items = sorted(response['Items'], key=itemgetter('day', 'hour'))
 
     return Response(sorted_data)
+
+
+
+@api_view(['GET'])
+def info_appointment(request):
+    client = boto3.client('dynamodb',region_name='us-east-1')
+   
+   
+    
+    User_id = request.GET.get('user')
+    
+    response = client.query(
+        IndexName='username-index',
+        TableName='appointments1',
+        KeyConditionExpression='username = :username',
+       
+        ExpressionAttributeValues={
+            ':username': {'S': User_id},
+           
+           
+        }
+    )
+
+    print(response['Items'])
+    
+    sorted_data = sorted(response['Items'], key=lambda x: (x['day']['S'], x['hour']['S']))
+    schedules = []
+    for sched in sorted_data:
+        if sched['status']['S'] == 'schedule':
+          
+            for doctor in doctors_rooms:
+                if doctor['name'] == sched['doctor_name']['S']:
+                    room = doctor['room']
+                    break
+           
+            sched['room'] = room
+            schedules.append(sched)
+
+           
+            break
+            
+       
+    return Response(schedules)
+
+
 
 
 @api_view(['GET'])
