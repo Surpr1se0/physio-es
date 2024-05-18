@@ -80,3 +80,26 @@ table.put_item(
             'status': 'finished'
         }
     )
+
+
+
+
+    # facial Recognition
+    pip install aws-shell
+    pip install awscli
+
+    aws rekognition create-collection --collection-id facerecognition_collection --region us-east-1
+    
+    
+    aws dynamodb create-table --table-name facerecognition \
+--attribute-definitions AttributeName=RekognitionId,AttributeType=S \
+--key-schema AttributeName=RekognitionId,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+--region us-east-1
+    
+    
+    aws s3 mb s3://facerecognition --region us-east-1
+    
+
+
+    correr o put_images.py para adicionar as imagens ao s3 e ao dynamodb

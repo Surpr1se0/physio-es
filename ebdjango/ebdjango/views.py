@@ -11,7 +11,7 @@ from .models import User
 import os
 from operator import itemgetter
 from . import aws_step_func
-
+from .rekognition  import recog
 
 doctors_available_time: dict = [
   {
@@ -400,5 +400,30 @@ def pay(request):
         return Response({
             'message': 'Payment in progress'
         })
+
+
+
+@api_view(['POST'])
+def facial_rec(request):
+
+
+    image_path = request.FILES['image']
+
+    recognition = recog(image_path)
+    print(recognition)
+
+    try:
+        user = User.objects.get(username=recognition)
+        token = generate_token(user.username, user.password)
+
+        return Response({
+            'message': 'Login successful',
+            'access_token': str(token),
+            'refresh_token': str(token),
+            'id': user.id,
+            'valid': '1'
+        })
+    except User.DoesNotExist:
+        return Response({'token': "login_error"})
 
 

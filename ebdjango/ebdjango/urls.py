@@ -28,6 +28,9 @@ from ebdjango.views import listadmin
 from ebdjango.views import update
 from ebdjango.views import pay
 from django.views.generic import TemplateView
+
+from ebdjango.views import facial_rec
+
 from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
@@ -46,5 +49,6 @@ urlpatterns = [
     path("listadmin/",listadmin,name='listadmin'),
     path("update/",update,name='update'),
     path("payment/",pay,name='pay'),
-    path("next_appointment/",info_appointment, name="info_appointment")
+    path("next_appointment/",info_appointment, name="info_appointment"),
+    path("facial-login/",facial_rec, name="facial_rec")
 ]
