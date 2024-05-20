@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import '../styles/LoginPage.css';
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import mainLogo from '../Images/logocolor.png';
 import frec from '../Images/frec.png';
 
@@ -24,7 +24,7 @@ function Login() {
             setUser(token_decoded);
             if (token_decoded && token_decoded.exp * 1000 < Date.now()) {
                 setUser(undefined);
-            }else{
+            } else {
                 setRedirectTo('/home');
             }
         }
@@ -33,6 +33,7 @@ function Login() {
     useEffect(() => {
         checkTokenExpiration();
         document.title = 'Login';
+
     }, []);
 
     setInterval(checkTokenExpiration, 5 * 60 * 1000);
@@ -140,7 +141,11 @@ function Login() {
             </div>
             <div className="Login2">
                 <img className="logo2" src={imagePreview || frec} alt="Facial Recognition" /> {/* Display uploaded image */}
-                <input type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
+
+
+                <input type="file" name="file" accept="image/*" onChange={handleImageChange} className="image-input" id="imageInput" />
+
+
                 <button onClick={loginWithFacialRecognition} className="fr-login">Login With Facial Recognition</button>
                 {
                     errorsLogin2.map((error, index) => <div key={index} className="error">{error}</div>) // Display errors for login2
