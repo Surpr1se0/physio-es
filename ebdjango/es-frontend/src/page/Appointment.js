@@ -83,13 +83,15 @@ const Appointment = () => {
       setSelectedTimeSlot(index);
       setSelectedDoctor(doctorIndex);
       setSelectedTimeSlotHour(timeSlot);
+      console.log('Selected Time Slot:', index);
     }
 
   };
 
   const redirectToAppointmentPage = async () => {
     try {
-      const response = await axios.post(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlot}&day=${selecteddaySlot}&user=${user.user_id}`);
+      const response = await axios.post(`http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/save/?speciality=${selectedSpecialty}&doctor=${selectedDoctor}&time=${selectedTimeSlotHour}&day=${selecteddaySlot}&user=${user.user_id}`);
+      
       console.log('Appointment Saved:', response.data);
       window.location.href = '/my-appointments';
     } catch (error) {

@@ -211,7 +211,7 @@ def save(request):
     time_selected = request.GET.get('time')
     day_selected = request.GET.get('day')
     User_id = request.GET.get('user')
-    print(response)
+    print(request)
     print(speciality)
     print(doctor_name)
     print(time_selected)
