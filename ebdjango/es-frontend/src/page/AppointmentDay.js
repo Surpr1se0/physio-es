@@ -37,7 +37,7 @@ const Appointment = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('data');
-    window.location.href = '/login'; // Redirect to the login page
+    window.location.href = '/login'; 
   };
 
 

@@ -21,14 +21,14 @@ const Teste = () => {
 
     const updatedAppointment = { ...appointments.find((item) => item.appointment_id === appointmentId), id: appointmentId };
     setError(null);
-    const response = await axios.put('http://localhost:8000/update/', updatedAppointment);
+    const response = await axios.put('http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/update/', updatedAppointment);
     console.log('Appointment status updated successfully!');
     window.location.href = '/adminpage'
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:8000/listadmin/'); // Replace with your Django API URL
+      const response = await axios.get('http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/listadmin/'); 
      
       setData(response.data);
       setLoading(false);

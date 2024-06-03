@@ -9,13 +9,14 @@ CREATE TABLE ebdjango_user (
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(254),
-    password VARCHAR(15) NOT NULL
+    password VARCHAR(15) NOT NULL,
+    money INTEGER
 );
 
 
-insert into ebdjango_user(name, username, email, password) values ('RUISANTOS', 'rui', 'rui@gmail.com', 'rui');
-insert into ebdjango_user(name, username, email, password) values ('BRUNO', 'bruno', 'bruno@gmail.com', 'bruno');
-insert into ebdjango_user(name, username, email, password) values ('francisco', 'francisco', 'francisco@gmail.com', 'francisco');
+insert into ebdjango_user(name, username, email, password,money) values ('RUISANTOS', 'rui', 'rui@gmail.com', 'rui',10000);
+insert into ebdjango_user(name, username, email, password,money) values ('BRUNO', 'bruno', 'bruno@gmail.com', 'bruno',10000);
+insert into ebdjango_user(name, username, email, password,money) values ('francisco', 'francisco', 'francisco@gmail.com', 'francisco',10000);
 
 
 

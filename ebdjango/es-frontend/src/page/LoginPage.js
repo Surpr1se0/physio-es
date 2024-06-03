@@ -49,7 +49,7 @@ function Login() {
             error.push("You must enter a password!");
             val = 1;
         }
-        setErrorsLogin1(error); // Set errors for login1
+        setErrorsLogin1(error); 
 
         if (val === 0) {
             axios.post('http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/login/', { username, password })
@@ -63,7 +63,7 @@ function Login() {
 
                         const decodedToken = jwtDecode(accessToken);
                         setUser(decodedToken);
-                        setRedirectTo('/home'); // Set redirection to /home
+                        setRedirectTo('/home'); 
                     } else {
                         setErrorsLogin1(['Invalid username or password']);
                     }
@@ -82,7 +82,7 @@ function Login() {
 
     const loginWithFacialRecognition = () => {
         if (!image) {
-            setErrorsLogin2(["You must upload an image for facial recognition!"]); // Set errors for login2
+            setErrorsLogin2(["You must upload an image for facial recognition!"]); 
             return;
         }
 
@@ -100,7 +100,7 @@ function Login() {
 
                     const decodedToken = jwtDecode(accessToken);
                     setUser(decodedToken);
-                    setRedirectTo('/next_appointment'); // Set redirection to /next_appointment
+                    setRedirectTo('/next_appointment'); 
                 } else {
                     setErrorsLogin2(['Facial recognition failed']);
                 }
@@ -136,11 +136,11 @@ function Login() {
                 <input className="writingField" placeholder="Password" type="password" onChange={(e) => { setPassword(e.target.value); }} />
                 <button onClick={login} className="btn">Login</button>
                 {
-                    errorsLogin1.map((error, index) => <div key={index} className="error">{error}</div>) // Display errors for login1
+                    errorsLogin1.map((error, index) => <div key={index} className="error">{error}</div>) 
                 }
             </div>
             <div className="Login2">
-                <img className="logo2" src={imagePreview || frec} alt="Facial Recognition" /> {/* Display uploaded image */}
+                <img className="logo2" src={imagePreview || frec} alt="Facial Recognition" /> {}
 
 
                 <input type="file" name="file" accept="image/*" onChange={handleImageChange} className="image-input" id="imageInput" />
@@ -148,7 +148,7 @@ function Login() {
 
                 <button onClick={loginWithFacialRecognition} className="fr-login">Login With Facial Recognition</button>
                 {
-                    errorsLogin2.map((error, index) => <div key={index} className="error">{error}</div>) // Display errors for login2
+                    errorsLogin2.map((error, index) => <div key={index} className="error">{error}</div>) 
                 }
             </div>
         </div>

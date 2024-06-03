@@ -211,7 +211,7 @@ def save(request):
     time_selected = request.GET.get('time')
     day_selected = request.GET.get('day')
     User_id = request.GET.get('user')
-    # Save the appointment to the dynamo db database
+    print(response)
     print(speciality)
     print(doctor_name)
     print(time_selected)
@@ -226,7 +226,7 @@ def save(request):
 
     response_count = client.scan(
     TableName='appointments1',
-    Select='COUNT'  # Get count of items
+    Select='COUNT'  
 )
     next_id = response_count['Count'] + 1
 
@@ -319,7 +319,7 @@ def info_appointment(request):
 @api_view(['GET'])
 def listadmin(request):
     
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  # Replace with your region
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  
 
     table = dynamodb.Table('appointments1')
 
@@ -339,7 +339,7 @@ def listadmin(request):
 @api_view(['PUT'])
 def update(request):
     
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')  # Replace with your region
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1') 
 
     table = dynamodb.Table('appointments1')
 
@@ -349,7 +349,7 @@ def update(request):
     expression_attribute_names = {'#s': 'status'}
     expression_attribute_values = {':val':  'finished'}
     primary_key = {
-    'appointment_id': valor['id']  # Replace with the actual partition key value
+    'appointment_id': valor['id']  
     }
 
     table.update_item( 
@@ -357,7 +357,7 @@ def update(request):
         UpdateExpression=update_expression,
         ExpressionAttributeNames=expression_attribute_names,
         ExpressionAttributeValues=expression_attribute_values,
-        ReturnValues='UPDATED_NEW'  # Se desejar retornar os valores atualizados
+        ReturnValues='UPDATED_NEW' 
     )
     
     return Response({

@@ -42,12 +42,12 @@ const Appointment = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('data');
-    window.location.href = '/login'; // Redirect to the login page
+    window.location.href = '/login'; 
   };
 
   const readDoctors = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/appointment/');
+      const response = await axios.get('http://phisiotherapy-es-env.eba-5duxqbri.us-east-1.elasticbeanstalk.com/appointment/');
       setDoctors(response.data);
       console.log('List of Doctors:', response.data);
     } catch (error) {
@@ -62,7 +62,7 @@ const Appointment = () => {
 
   const handleSpecialtyChange = (event) => {
     setSelectedSpecialty(event.target.value);
-    setSelectedDoctor(''); // Reset selected doctor when changing specialty
+    setSelectedDoctor(''); 
   };
 
   const handleDoctorChange = (event) => {
@@ -74,7 +74,6 @@ const Appointment = () => {
 
 
     if (selectedTimeSlot === index && selectedDoctor === doctorIndex && selecteddaySlot === day) {
-      // Se estiver selecionado, desmarca o horário
       setselecteddaySlot(null);
       setSelectedTimeSlot(null);
       setSelectedDoctor(null);
@@ -149,11 +148,11 @@ const Appointment = () => {
         <h2>Available Appointment Times</h2>
         {availableTimes.map((doctorAvailability, doctorIndex) => (
           <div key={doctorIndex}>
-            <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {/* Display doctor's name */}
+            <h3>{`Doctor ${doctorAvailability.doctor}`}</h3> {}
             <ul>
               {Object.keys(doctorAvailability.availability).map((day, dayIndex) => (
                 <li key={dayIndex}>
-                  {doctorAvailability.availability[day].length >= 1 && ( // Verifica se há mais de um horário disponível para o dia
+                  {doctorAvailability.availability[day].length >= 1 && ( 
                     <>
                       <strong>{day}:</strong>
                       <ul>
